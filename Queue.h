@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <list>
+#include "del_error.h"
 
 using namespace std;
 
@@ -9,20 +10,22 @@ template <class T> class queue
 private:
 	list<T> wait;
 
-	size_t queue_size;
 public:
+	queue()noexcept = default;
 	//добавляет элемент в очередь
-	void add(T element);
+	void add(T element, int indx = 1)noexcept;
 	//щчищает очередь
-	void clear()noexcept;
+	void clear();
 	//показывает размер очереди
-	int get_count()const noexcept { return queue_size; }
+	int get_count()const noexcept { return wait.size(); }
 	//показывает информацию об элементах
-	void print_queue()const noexcept;
+	void print_queue()const;
 	//проверка, пуста ли очередь или нет
-	bool empty() {return wait.empty();}
+	bool empty()const noexcept {return wait.empty();}
 	//удаляет элемент
-	void extract();
+	void extract(int indx = 1);
+
+	~queue() { wait.clear(); }
 };
 
 #include "Header.inl"

@@ -8,23 +8,31 @@ int main()
 
 	int value;
 
-	cout << "\nвведите значение\n";
+	try
+	{
 
-	cin >> value;
+		cout << "\nвведите значение\n";
 
-	queue.add(value);
+		cin >> value;
 
-	cout << "\nвведите значение\n";
+		queue.add(value);
 
-	cin >> value;
+		cout << "\nвведите значение\n";
 
-	queue.add(value);
+		cin >> value;
 
-	queue.print_queue();
+		queue.add(value);
 
-	queue.extract();
+		queue.print_queue();
 
-	queue.print_queue();
+		queue.extract();
 
+		queue.print_queue();
+	}
+
+	catch (const del_error& del_er)
+	{
+		cout << del_er.what();
+	}
 	return 0;
 }
